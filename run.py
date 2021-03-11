@@ -1,70 +1,41 @@
 from kivy.app import App
-
-from kivy.uix.label import Label
 from kivy.uix.widget import Widget
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.floatlayout import FloatLayout
-
 from kivy.properties import ObjectProperty
+from kivy.graphics import Rectangle, Color, Line
 
 
-class MyWidget(Widget):
-    name = ObjectProperty()
-    age = ObjectProperty()
+class Touch(Widget):
+    btn = ObjectProperty()
 
-    def btn(self):
-        print(f'Name: {self.name.text}')
-        print(f'Age: {self.age.text}')
-        self.name.text = 'Thanks'
-        self.age.text = 'For sharing'
-
-
-class MyGrid(GridLayout):
     def __init__(self, **kwargs):
-        super(MyGrid, self).__init__(**kwargs)
-        self.cols = 1
+        super(Touch, self).__init__(**kwargs)
 
-        self.inside = GridLayout()
-        self.inside.cols = 2
+        with self.canvas:
+            Color(255, 255, 255, 1, mode='rgba')
+            Line(points=(20, 30, 40, 50, 100, 100, 500, 700))
 
-        self.inside.add_widget(Label(text='Your full name:'))
-        self.full_name = TextInput(multiline=False)
-        self.inside.add_widget(self.full_name)
-
-        self.inside.add_widget(Label(text='Your bank account number:'))
-        self.bank_number = TextInput(multiline=False)
-        self.inside.add_widget(self.bank_number)
-
-        self.inside.add_widget(Label(text='Your bank account password:'))
-        self.bank_password = TextInput(multiline=False)
-        self.inside.add_widget(self.bank_password)
-
-        self.add_widget(self.inside)
-
-        self.submit = Button(text='Submit!', font_size=52)
-        self.submit.bind(on_press=self.submit_pressed)
-        self.add_widget(self.submit)
-
-    def submit_pressed(self, instance):
-        print(f'Full name: {self.full_name.text}')
-        print(f'Bank account number: {self.bank_number.text}')
-        print(f'Bank account password: {self.bank_password.text}')
-
-        # Clear inputs
-        self.full_name.text = ''
-        self.bank_number.text = ''
-        self.bank_password.text = ''
+            Color(0, 250, 0, 0.3, mode='rgba')
+            self.rect = Rectangle(pos=(190, 300), size=(150, 150))
 
 
-class MyApp(App):
+    def on_touch_down(self, touch):
+        self.rect.pos = touch.pos
+
+        print('Mouse down', touch)
+
+    def on_touch_up(self, touch):
+        print('Mouse up', touch)
+
+    def on_touch_move(self, touch):
+        self.rect.pos = touch.pos
+        print('Mouse move', touch)
+
+
+
+class Parser(App):
     def build(self):
-        # return Label(text='Shaiken Madi\'s First Kivy App')
-        # return MyGrid()
-        # return MyWidget()
-        return FloatLayout()
+        return Touch()
 
 
 if __name__ == '__main__':
-    MyApp().run()
+    Parser().run()
