@@ -1,9 +1,13 @@
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
 
+
+class MyWidget(Widget):
+    pass
 
 
 class MyGrid(GridLayout):
@@ -47,7 +51,8 @@ class MyGrid(GridLayout):
 class MyApp(App):
     def build(self):
         # return Label(text='Shaiken Madi\'s First Kivy App')
-        return MyGrid()
+        # return MyGrid()
+        return MyWidget()
 
 
 if __name__ == '__main__':
