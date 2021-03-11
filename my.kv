@@ -1,34 +1,23 @@
 #:kivy 1.11.1
-<MyWidget>
 
-    name: name
-    age: age
-
-
-    GridLayout:
-        cols: 1
-        size: root.width - 200, root.height - 200
-        pos: 100, 100
-
-        GridLayout:
-            cols: 2
-
-            Label:
-                text: "Name: "
-
-            TextInput:
-                id: name
-                multiline: False
+<Button>:
+    font_size: 20
+    # width height
+    size_hint: 0.2, 0.1
+    color: 0.3, 0.6, 0.7, 1
+    background_color: 0.3, 0.4, 0.5, 1
 
 
-            Label:
-                text: "Age: "
+<FloatLayout>:
+    
 
-            TextInput:
-                id: age
-                multiline: False
-
-
-        Button:
-            text: "Submit"
-            on_press: root.btn()
+    Button:
+        # pos_hint: {'x', 'y', 'top', 'bottom', 'left', 'right'}
+        pos_hint: {'x': 0.4, 'y': 0.1}
+        text: 'Add'
+    
+    Button:
+        id: btn
+        pos_hint: {'x': 0.4, 'y': 0}
+        text: 'Multiply' if btn.state == 'normal' else 'inactive'
+        
