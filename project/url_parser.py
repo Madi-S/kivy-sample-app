@@ -1,7 +1,7 @@
 import requests
 
 
-def get_characters_count(url: str):
+def get_characters_count(url):
     r = requests.get(url)
     if r.ok:
         return len(r.text)
@@ -9,6 +9,6 @@ def get_characters_count(url: str):
     return 'Cannot reach given URL'
 
 
-def url_validated(url: str):
+def url_validated(url):
     if url.startswith('http://') or url.startswith('https://'):
         return True

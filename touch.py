@@ -17,10 +17,8 @@ class Touch(Widget):
             Color(0, 250, 0, 0.3, mode='rgba')
             self.rect = Rectangle(pos=(190, 300), size=(150, 150))
 
-
     def on_touch_down(self, touch):
         self.rect.pos = touch.pos
-
         print('Mouse down', touch)
 
     def on_touch_up(self, touch):
@@ -29,7 +27,6 @@ class Touch(Widget):
     def on_touch_move(self, touch):
         self.rect.pos = touch.pos
         print('Mouse move', touch)
-
 
 
 class Parser(App):

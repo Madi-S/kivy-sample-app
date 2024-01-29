@@ -1,9 +1,9 @@
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+from kivy.properties import ObjectProperty
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 from url_parser import get_characters_count, url_validated
 
@@ -16,7 +16,6 @@ class ParseURL(Screen):
         if url_validated(url):        
             self.url.text = get_characters_count(url)
             print(f'!!!Word count: {self.url.text}')
-
         else:        
             invalidURL()
 
@@ -38,7 +37,6 @@ class DonationsWindow(Screen):
         sm.current = 'home'
 
 
-
 class MainWindow(Screen):
     def goHome(self):
         sm.current = 'home'
@@ -52,7 +50,6 @@ def invalidURL():
     pop = Popup(title='Invalid URL',
                   content=Label(text='Please fill correct URL, which should start with "http" or "https"'),
                   size_hint=(None, None), size=(600, 100))
-
     pop.open()
 
 
@@ -70,11 +67,9 @@ def successfulTransaction():
                   size_hint=(None, None), size=(600, 100))
 
     pop.open()
-    
-    
+
 
 kv = Builder.load_file('project.kv')
-
 sm = WindowManager()
 screens = (DonationsWindow(name='donations'), ParseURL(name='parse'), MainWindow(name='home'))
 
